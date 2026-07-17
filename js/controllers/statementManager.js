@@ -52,7 +52,10 @@ function initStatementObject() {
     }
 
     loadLang(dataVallydette.statement.lang, function () {
-        initStatementProperties();
+        initStatementProperties(function () {
+            showStatementWizard();
+            initAnchorMenu();
+        });
     });
 }
 
@@ -248,12 +251,6 @@ function initStatementProperties(onComplete) {
         onComplete();
     }
 }
-
-// Appel
-initStatementProperties(function() {
-    showStatementWizard();
-    initAnchorMenu();
-});
 
 /**
  * Init the statement page
@@ -883,7 +880,10 @@ function showStatementWizard() {
         fr.onload = function (e) {
             dataVallydette.statement = JSON.parse(e.target.result);
             loadLang(dataVallydette.statement.lang, function () {
-                initStatementProperties();
+                initStatementProperties(function () {
+                    showStatementWizard();
+                    initAnchorMenu();
+                });
             });
         };
 
@@ -2015,3 +2015,4 @@ const adaptPlan = function () {
         dataVallydette.statement.app
     );
 }
+
